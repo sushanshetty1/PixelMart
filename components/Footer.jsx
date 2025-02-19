@@ -1,44 +1,95 @@
 import Link from "next/link";
-import { Instagram, Facebook } from "lucide-react";
-
+import { Instagram, Facebook, Twitter, LinkedIn } from "lucide-react";
 
 export default function Footer() {
+  const navigationLinks = [
+    { href: "/shop", label: "Shop" },
+    { href: "/about", label: "About Us" },
+    { href: "/contact", label: "Contact" },
+    { href: "/faq", label: "FAQs" }
+  ];
+
+  const socialLinks = [
+    { icon: Instagram, href: "#", label: "Instagram" },
+    { icon: Facebook, href: "#", label: "Facebook" },
+    { icon: Twitter, href: "#", label: "Twitter" },
+    { icon: LinkedIn, href: "#", label: "LinkedIn" }
+  ];
+
   return (
-    <footer className="bg-gradient-to-br from-neutral-900 to-neutral-800 px-4 md:px-8 lg:px-16 py-8 text-white">
-      <div className="gap-8 grid grid-cols-1 md:grid-cols-3 mx-auto max-w-7xl">
-        {/* Logo & Description */}
-        <div>
-          <h2 className="font-bold text-2xl">PixelMart</h2>
-          <p className="mt-2 text-gray-400">Your one-stop shop for your personalized products.</p>
-        </div>
+    <footer className="bg-gradient-to-b from-neutral-900 to-neutral-950">
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          {/* Brand Section */}
+          <div className="space-y-4">
+            <h2 className="text-2xl font-bold tracking-tight text-white">
+              PixelMart
+            </h2>
+            <p className="text-sm leading-6 text-gray-300">
+              Your one-stop shop for personalized products. We craft unique items 
+              that tell your story and match your style.
+            </p>
+          </div>
 
-        {/* Navigation Links */}
-        <div className="flex flex-col gap-2">
-          <h3 className="font-semibold text-lg">Quick Links</h3>
-          <Link href="/shop" className="text-gray-400 hover:text-white">Shop</Link>
-          <Link href="/about" className="text-gray-400 hover:text-white">About Us</Link>
-          <Link href="/contact" className="text-gray-400 hover:text-white">Contact</Link>
-          <Link href="/faq" className="text-gray-400 hover:text-white">FAQs</Link>
-        </div>
+          {/* Navigation Links */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-200">
+              Quick Links
+            </h3>
+            <ul className="space-y-3">
+              {navigationLinks.map((link) => (
+                <li key={link.href}>
+                  <Link 
+                    href={link.href}
+                    className="text-gray-400 transition-colors duration-200 hover:text-white"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        {/* Social Media Links */}
-        <div>
-          <h3 className="font-semibold text-lg">Follow Us</h3>
-          <div className="flex gap-4 mt-2">
-            <Link href="#" className="text-gray-400 hover:text-white">
-              <Instagram size={24} />
-            </Link>
-            <Link href="#" className="text-gray-400 hover:text-white">
-              <Facebook size={24} />
-            </Link>
+          {/* Contact Information */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-200">
+              Contact Us
+            </h3>
+            <ul className="space-y-3 text-gray-400">
+              <li>123 Market Street</li>
+              <li>San Francisco, CA 94105</li>
+              <li>support@pixelmart.com</li>
+              <li>(555) 123-4567</li>
+            </ul>
+          </div>
+
+          {/* Social Links */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-200">
+              Follow Us
+            </h3>
+            <div className="flex space-x-6">
+              {socialLinks.map((social) => (
+                <Link
+                  key={social.label}
+                  href={social.href}
+                  className="text-gray-400 transition-colors duration-200 hover:text-white"
+                  aria-label={social.label}
+                >
+                  <social.icon className="h-6 w-6" />
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Bottom Section */}
-      <div className="mt-8 pt-4 border-gray-700 border-t text-gray-400 text-sm text-center">
-        &copy; {new Date().getFullYear()} PixelMart. All rights reserved.
+        {/* Copyright Section */}
+        <div className="mt-12 border-t border-gray-800 pt-8">
+          <p className="text-center text-sm text-gray-400">
+            &copy; {new Date().getFullYear()} PixelMart. All rights reserved.
+          </p>
+        </div>
       </div>
     </footer>
-  )
+  );
 }
