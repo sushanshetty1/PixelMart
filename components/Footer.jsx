@@ -4,7 +4,7 @@ import { Instagram, Facebook } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 px-4 md:px-8 lg:px-16 py-8 text-white">
+    <footer className="bg-gradient-to-br from-neutral-900 to-neutral-800 px-4 md:px-8 lg:px-16 py-8 text-white">
       <div className="gap-8 grid grid-cols-1 md:grid-cols-3 mx-auto max-w-7xl">
         {/* Logo & Description */}
         <div>
