@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger 
 } from "@/components/ui/dropdown-menu";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import SignInModal from '@/components/SignIn';
 
 const CATEGORIES = [
   'Stock Video', 'Video Templates', 'Music', 'Sound Effects', 
@@ -47,9 +48,7 @@ export default function PixelMartHeader() {
                   0
                 </span>
               </Button>
-              <Button className="bg-gradient-to-r from-blue-600 to-purple-600">
-                <User className="mr-2 w-5 h-5" /> Sign In
-              </Button>
+              <SignInModal />
             </div>
           </div>
 

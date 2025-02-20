@@ -1,13 +1,39 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApps } from "firebase/app";
+import { 
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  signOut,
+  signInWithPopup,
+  GoogleAuthProvider
+} from "firebase/auth";
+
+if (!process.env.NEXT_PUBLIC_FIREBASE_API_KEY) {
+  throw new Error('Missing Firebase configuration environment variables');
+}
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC7plFcNs4UDNmKwQlbX9GLum_RdtkGcn0",
-  authDomain: "pixelmart-1.firebaseapp.com",
-  projectId: "pixelmart-1",
-  storageBucket: "pixelmart-1.firebasestorage.app",
-  messagingSenderId: "756574164217",
-  appId: "1:756574164217:web:c1e3dd60333e54c2547e28",
-  measurementId: "G-JWT9SG6KW9"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
 };
 
-const app = initializeApp(firebaseConfig);
+const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
+
+export {
+  auth,
+  googleProvider,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  signOut,
+  signInWithPopup,
+  GoogleAuthProvider
+};
